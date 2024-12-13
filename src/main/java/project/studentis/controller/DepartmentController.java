@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -21,6 +22,7 @@ public class DepartmentController {
     private DepartmentService departmentService;
     @PostMapping
     public ResponseEntity<DepartmentDto> createDepartment(@RequestBody DepartmentDto departmentDto) {
+        departmentDto.setCreatedOn(Date.from(new Date().toInstant()));
         DepartmentDto newDepartment =  departmentService.createDepartment(departmentDto);
         return new ResponseEntity<>(newDepartment, HttpStatus.CREATED);
     }

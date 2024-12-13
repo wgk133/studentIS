@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,7 @@ public class StudentService implements IStudentService {
                 .orElseThrow(()-> new ResourceNotFoundException("Department was not found with id: "
                         + studentDto.getDepartmentId()));
         student.setDepartment(department);
+        student.setCreatedOn(Date.from(new Date().toInstant()));
         Student savedStudent =  studentRepository.save(student);
         return StudentMapper.mapToStudentDto(savedStudent);
     }
@@ -54,14 +56,15 @@ public class StudentService implements IStudentService {
         Student student = studentRepository.findById(studentId).orElseThrow(()->
                 new ResourceNotFoundException("Student was not found with given id: " + studentId));
 
-        student.setFirstName(studentDto.getFirstName());
-        student.setLastName(studentDto.getLastName());
+        student.setName(studentDto.getName());
         student.setEmail(studentDto.getEmail());
 
         Department department = departmentRepository.findById(studentDto.getDepartmentId())
                 .orElseThrow(()-> new ResourceNotFoundException("Department was not found with id: "
                         + studentDto.getDepartmentId()));
         student.setDepartment(department);
+        student.setGpa(studentDto.getGpa());
+        student.setDob(studentDto.getDob());
 
         Student savedStudent = studentRepository.save(student);
         return StudentMapper.mapToStudentDto(savedStudent);

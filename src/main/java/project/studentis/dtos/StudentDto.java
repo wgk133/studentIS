@@ -14,9 +14,7 @@ import java.util.Date;
 public class StudentDto {
     private Long id;
 
-    private String firstName;
-
-    private String lastName;
+    private String name;
 
     private String email;
 
