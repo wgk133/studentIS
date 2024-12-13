@@ -1,7 +1,7 @@
 package project.studentis.mappers;
 
-import com.example.studentms.dtos.StudentDto;
-import com.example.studentms.entities.Student;
+import project.studentis.dtos.StudentDto;
+import project.studentis.entities.Student;
 
 public class StudentMapper {
     public static StudentDto mapToStudentDto(Student student) {
