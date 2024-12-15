@@ -21,7 +21,7 @@ public class Student {
     @Column(name = "index_no")
     private Long id;
 
-    @Column(name = "first_name")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "email", nullable = false, unique = true)
