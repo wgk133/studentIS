@@ -16,5 +16,16 @@ pipeline {
         }
       }
     }
+
+    //deploy with docker compose
+
+    stage('Deploy with Docker Compose') {
+      steps {
+        script {
+          bat "docker compose down"
+          bat "docker compose up -d"
+        }
+      }
+    }
   }
 }
