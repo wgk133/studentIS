@@ -1,5 +1,6 @@
-import ButtonLink from "./ButtonLink";
+import { EditIcon, Trash2 } from "lucide-react";
 import useListDepartmentComponentHook from "../hooks/useListDepartmentComponentHook";
+import ButtonLink from "./ButtonLink";
 
 const ListDepartmentComponent = () => {
   const { departments, updateDepartment, removeDepartment } =
@@ -14,8 +15,7 @@ const ListDepartmentComponent = () => {
           <tr>
             <th scope="col">Department Name</th>
             <th scope="col">Department Description</th>
-            <th scope="col">Action #1</th>
-            <th scope="col">Action #2</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -25,20 +25,20 @@ const ListDepartmentComponent = () => {
                 <td>{item.departmentName}</td>
                 <td>{item.departmentDescription}</td>
                 <td>
-                  <button
-                    className="btn btn-outline-info me-2"
-                    onClick={() => updateDepartment(item.id)}
-                  >
-                    Update
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="btn btn-outline-danger"
-                    onClick={() => removeDepartment(item.id)}
-                  >
-                    Delete
-                  </button>
+                  <div className="btn-group">
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={() => removeDepartment(item.id)}
+                    >
+                      <Trash2 />
+                    </button>
+                    <button
+                      className="btn btn-sm btn-info"
+                      onClick={() => updateDepartment(item.id)}
+                    >
+                      <EditIcon />
+                    </button>
+                  </div>
                 </td>
               </tr>
             );

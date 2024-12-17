@@ -1,4 +1,7 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import useStudentComponentHook from "../hooks/useStudentComponentHook";
+import { getStudentById } from "../services/StudentService";
 import ButtonLink from "./ButtonLink";
 
 const StudentComponent = () => {
@@ -16,7 +19,28 @@ const StudentComponent = () => {
     departments,
     saveOrUpdateStudent,
     title,
+    setTitle,
   } = useStudentComponentHook();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      setTitle("Edit Student");
+      getStudentData(id);
+    } else {
+      setTitle("Add Student");
+    }
+  }, [id]);
+
+  const getStudentData = async (studentId) => {
+    const response = await getStudentById(studentId);
+    const student = response.data;
+    setName(student.name);
+    setEmail(student.email);
+    setDob(student.dob);
+    setGpa(student.gpa);
+    setDepartmentId(student.departmentId);
+  };
 
   return (
     <div className="container mt-5">

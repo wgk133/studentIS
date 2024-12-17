@@ -56,7 +56,7 @@ const useStudentComponentHook = () => {
   const getStudentData = async (studentId) => {
     const response = await getStudentById(studentId);
     const student = response.data;
-    setFirstName(student.name);
+    setName(student.name);
     setEmail(student.email);
     setDob(student.dob);
     setGpa(student.gpa);
@@ -86,6 +86,7 @@ const useStudentComponentHook = () => {
     departments,
     saveOrUpdateStudent,
     title,
+    setTitle,
   };
 };
 
