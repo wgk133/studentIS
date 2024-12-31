@@ -38,11 +38,11 @@ const useStudentComponentHook = () => {
         if (id) {
           await updateStudent(id, student);
           toast.info("Student updated successfully!");
-          navigate("/");
+          navigate("/students");
         } else {
           await createStudent(student);
           toast.success("Student added successfully!");
-          navigate("/");
+          navigate("/students");
         }
       } catch (error) {
         toast.error("An error occurred. Please try again.");

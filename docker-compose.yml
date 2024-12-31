@@ -1,6 +1,6 @@
-version: '3.8'
+version: "3.8"
 services:
-  app:
+  student-is-api:
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,6 +15,18 @@ services:
       - SPRING_DATASOURCE_PASSWORD=123456
     networks:
       - springboot-mysql-network
+
+  student-is-client:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - student-is-api
+    networks:
+      - springboot-mysql-network
+
   mysqldb:
     image: mysql:latest
     ports:
@@ -27,10 +39,11 @@ services:
     networks:
       - springboot-mysql-network
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       retries: 10
       interval: 3s
       timeout: 30s
+
 volumes:
   mysql-data:
 networks:
